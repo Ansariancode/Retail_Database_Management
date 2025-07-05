@@ -83,13 +83,13 @@ select * from payments;
 select * from product_comments;
 select * from products;
 select * from stores;
- -- QUES 1
+ -- Q1
  select p.product_name, SUM(oi.quantity) AS total_qty FROM order_items oi
  join products p on oi.product_id = p.product_id
  group by p.product_id, p.product_name
  order by total_qty desc; 
  
- -- QUES 2
+ -- Q2
 select o.order_id, p.product_name
 from orders o
 join order_items oi on o.order_id = oi.order_id
@@ -97,13 +97,13 @@ join products p on oi.product_id = p.product_id
 join stores s on p.store_id = s.store_id
 where s.city = 'Toronto';
 
--- QUES 3
+-- Q3
 select *
 from users
 where role = 'buyer' and phone like '91%';
 
 
--- QUES 4
+-- Q4
 SELECT store_name AS address, 
        opening_year AS starttime, 
        NULL AS endtime
@@ -114,27 +114,27 @@ WHERE city = (
     WHERE user_id = 5
 );
 
--- QUES 5
+-- Q5
 SELECT SUM(oi.quantity) AS total_quantity
 FROM order_items oi
 JOIN products p ON oi.product_id = p.product_id
 WHERE p.store_id = 1;
 
--- QUES 6
+-- Q6
 UPDATE orders
 SET payment_state = 'unpaid'
 WHERE 
     STR_TO_DATE(order_date, '%Y-%m-%d') > '2017-12-31'
     AND total_amount > 50;
 
--- QUES 7
+-- Q7
 UPDATE users
 SET name = 'UpdatedUser', phone = '9123456789'
 WHERE city = 'Montreal' AND province = 'Quebec';
 select * from users;
 
 
--- QUES 8
+-- Q8
 SELECT * FROM stores
 WHERE opening_year < 2017;
 
@@ -146,14 +146,14 @@ WHERE store_id IN (
 );
 select * from orders;
 
--- QUES 9
+-- Q9
 SELECT *
 FROM products
 WHERE price > (
     SELECT AVG(price) FROM products
 );
 
--- QUES 10
+-- Q10
 CREATE VIEW product_sales2018 AS
 SELECT
     p.product_id,
@@ -167,7 +167,7 @@ WHERE YEAR(STR_TO_DATE(o.order_date, '%Y-%m-%d')) = 2018;
 
 SELECT * FROM product_sales2018;
 
--- QUES11
+-- Q11
 DESCRIBE payments;
 SELECT * FROM payments LIMIT 5;
 SELECT
@@ -181,7 +181,7 @@ FROM
 JOIN
     orders o ON p.order_id = o.order_id;
 
--- QUES 12
+-- Q12
 SELECT
     s.store_id,
     s.store_name,
