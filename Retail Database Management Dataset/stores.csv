@@ -1,0 +1,11 @@
+store_id,store_name,seller_id,city,province,opening_year
+1,Store1,18,Quebec,BC,2021
+2,Store2,10,Toronto,Quebec,2015
+3,Store3,9,Ottawa,Ontario,2019
+4,Store4,18,Vancouver,Ontario,2020
+5,Store5,3,Montreal,BC,2021
+6,Store6,12,Quebec,BC,2016
+7,Store7,10,Quebec,BC,2022
+8,Store8,6,Montreal,Quebec,2020
+9,Store9,10,Ottawa,BC,2020
+10,Store10,10,Vancouver,BC,2021

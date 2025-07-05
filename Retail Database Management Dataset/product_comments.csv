@@ -1,0 +1,16 @@
+comment_id,buyer_id,product_id,comment_text,comment_date
+1,13,29,Comment 1,2017-10-18
+2,1,28,Comment 2,2017-01-10
+3,17,14,Comment 3,2019-07-01
+4,4,1,Comment 4,2020-06-17
+5,2,26,Comment 5,2018-04-07
+6,2,16,Comment 6,2022-02-06
+7,15,30,Comment 7,2016-12-14
+8,17,30,Comment 8,2024-12-06
+9,1,28,Comment 9,2016-03-09
+10,2,12,Comment 10,2024-11-10
+11,15,7,Comment 11,2016-09-23
+12,7,12,Comment 12,2024-12-25
+13,14,11,Comment 13,2024-10-13
+14,20,14,Comment 14,2021-07-28
+15,7,14,Comment 15,2019-07-27
