@@ -83,13 +83,13 @@ select * from payments;
 select * from product_comments;
 select * from products;
 select * from stores;
- -- Q1
+ -- Q1 Find the product that has been ordered the most times.
  select p.product_name, SUM(oi.quantity) AS total_qty FROM order_items oi
  join products p on oi.product_id = p.product_id
  group by p.product_id, p.product_name
  order by total_qty desc; 
  
- -- Q2
+ -- Q2 Find all the orders that were placed for products that are sold by stores in the city of Toronto.
 select o.order_id, p.product_name
 from orders o
 join order_items oi on o.order_id = oi.order_id
@@ -97,13 +97,13 @@ join products p on oi.product_id = p.product_id
 join stores s on p.store_id = s.store_id
 where s.city = 'Toronto';
 
--- Q3
+-- Q3 Find all the details of the buyers who have a phone number that starts with the contact number 91.
 select *
 from users
 where role = 'buyer' and phone like '91%';
 
 
--- Q4
+-- Q4 Display the address, starttime and endtime of the service points in the same city as that of  userid 5
 SELECT store_name AS address, 
        opening_year AS starttime, 
        NULL AS endtime
@@ -114,27 +114,27 @@ WHERE city = (
     WHERE user_id = 5
 );
 
--- Q5
+-- Q5 Display the total quantity of products from store with storeid 8 in the shopping cart
 SELECT SUM(oi.quantity) AS total_quantity
 FROM order_items oi
 JOIN products p ON oi.product_id = p.product_id
 WHERE p.store_id = 1;
 
--- Q6
+-- Q6 Update the payment state of orders to unpaid which were created after year 2017 and with a total amount greater than 50.
 UPDATE orders
 SET payment_state = 'unpaid'
 WHERE 
     STR_TO_DATE(order_date, '%Y-%m-%d') > '2017-12-31'
     AND total_amount > 50;
 
--- Q7
+-- Q7 Update the name and contact phone number of the address where the province is Quebec and city is Montreal.
 UPDATE users
 SET name = 'UpdatedUser', phone = '9123456789'
 WHERE city = 'Montreal' AND province = 'Quebec';
 select * from users;
 
 
--- Q8
+-- Q8 Delete the store which opened before year 2017
 SELECT * FROM stores
 WHERE opening_year < 2017;
 
@@ -146,14 +146,14 @@ WHERE store_id IN (
 );
 select * from orders;
 
--- Q9
+-- Q9 Create a report of all products whose price is above average price using subquery.
 SELECT *
 FROM products
 WHERE price > (
     SELECT AVG(price) FROM products
 );
 
--- Q10
+-- Q10 Create a view of all product sales in 2016.
 CREATE VIEW product_sales2018 AS
 SELECT
     p.product_id,
@@ -167,7 +167,7 @@ WHERE YEAR(STR_TO_DATE(o.order_date, '%Y-%m-%d')) = 2018;
 
 SELECT * FROM product_sales2018;
 
--- Q11
+-- Q11 Retrieve all credit card payments and their associated order information
 DESCRIBE payments;
 SELECT * FROM payments LIMIT 5;
 SELECT
@@ -181,7 +181,7 @@ FROM
 JOIN
     orders o ON p.order_id = o.order_id;
 
--- Q12
+-- Q12 Retrieve all stores and their associated managers
 SELECT
     s.store_id,
     s.store_name,
@@ -194,7 +194,7 @@ LEFT JOIN
 ON
     s.seller_id = u.user_id AND u.role = 'seller';
     
--- Q13
+-- Q13 Query the total quantity of products from store with storeid 8 in the shopping cart using a subquery.
 SELECT SUM(oi.quantity) AS total_quantity
 FROM order_items oi
 WHERE oi.product_id IN (
@@ -203,7 +203,7 @@ WHERE oi.product_id IN (
     WHERE p.store_id = 3
 );
 
--- Q14
+-- Q14 Find all sellers who manage more than one store.
 
 SELECT u.user_id, u.name
 FROM users u
@@ -213,7 +213,7 @@ GROUP BY u.user_id, u.name
 HAVING COUNT(s.store_id) > 1;
 
 
--- Q15
+-- Q15 Retrieve the names of buyers who have made at least one order and have also left a comment on a product.
 SELECT DISTINCT u.name AS commentors
 FROM users u
 WHERE u.role = 'buyer'
